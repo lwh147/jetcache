@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+jetcache:
+  # 统计间隔，时间单位为分钟，0表示不统计
+  statIntervalMinutes: 3
+  # 是否把area添加到cacheName前作为key前缀
+  areaInCacheName: false
+  # 本地缓存配置
+  local:
+    default:
+      # 缓存类型为linkedhashmap，还可以为caffeine
+      type: linkedhashmap
+      # key转换器，当前只有一个实现，fastjson
+      keyConvertor: fastjson
+      # 本地缓存元素限制
+      # limit: 100
+      # 全局过期时间，默认无穷大
+      # expireAfterWriteInMillis: 100000
+  # 远程缓存配置
+  remote:
+    default:
+      # 缓存类型，采用redis，还支持tair
+      type: redis
+      # key转换器
+      keyConvertor: fastjson
+      # 序列化策略配置，可选java和kryo
+      valueEncoder: java
+      # 反序列化策略
+      valueDecoder: java
+      # 下面都是redis的配置
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: 182.92.106.123
+      port: 6379
+      password: Lwh750418.
